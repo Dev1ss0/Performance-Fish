@@ -481,3 +481,8 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+/Source/PerformanceFish1.6/Properties/Resources.Designer.cs
+/Source/PerformanceFish1.6/Properties/Resources.resx
+/Source/PerformanceFish1.6/Properties/Settings.Designer.cs
+/Source/PerformanceFish1.6/Properties/Settings.settings
+/Source/PerformanceFish1.6/.editorconfig

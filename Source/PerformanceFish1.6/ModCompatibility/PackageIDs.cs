@@ -17,7 +17,7 @@ public static class PackageIDs
 		MULTIPLAYER = "rwmt.Multiplayer",
 		PERFORMANCE_FISH = "bs.performance",
 		PERFORMANCE_OPTIMIZER = "Taranchuk.PerformanceOptimizer",
-		PREPATCHER = "zetrith.prepatcher",
+		PREPATCHER = "jikulopo.prepatcher",
 		PRISON_LABOR = "avius.prisonlabor",
 		RIMMSQOL = "MalteSchulze.RIMMSqol",
 		USE_BEST_MATERIALS = "kathanon.UseBestMaterials",
