@@ -87,9 +87,9 @@ public sealed class HediffSetPrecaching : ClassWithFishPrepatches
 		public static void UpdateCache(HediffSet __instance, HediffDef def, bool mustBeVisible, Hediff? __result)
 		{
 			if (mustBeVisible)
-				VisibleHediffCache.GetExistingReference(__instance, def).Update(__instance, __result);
+				VisibleHediffCache.GetExistingReference(__instance.pawn.thingIDNumber, def.shortHash).Update(__instance, __result);
 			else
-				HediffCache.GetExistingReference(__instance, def).Update(__instance, __result);
+				HediffCache.GetExistingReference(__instance.pawn.thingIDNumber, def.shortHash).Update(__instance, __result);
 		}
 	}
 
@@ -151,7 +151,7 @@ public sealed class HediffSetPrecaching : ClassWithFishPrepatches
 
 		[MethodImpl(MethodImplOptions.NoInlining)]
 		public static void UpdateCache(HediffSet __instance, ref IEnumerable<BodyPartRecord> __result)
-			=> NotMissingPartsCache.GetExistingReference(__instance).Update(__instance, ref __result);
+			=> NotMissingPartsCache.GetExistingReference(__instance.pawn.thingIDNumber).Update(__instance, ref __result);
 	}
 }
 

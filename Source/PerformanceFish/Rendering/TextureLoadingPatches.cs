@@ -63,8 +63,10 @@ public sealed class TextureLoadingPatches : ClassWithFishPrepatches
 		public override void Transpiler(ILProcessor ilProcessor, ModuleDefinition module)
 			=> ilProcessor.ReplaceBodyWith(LoadTexture);
 
+
 		public static Texture2D? LoadTexture(VirtualFile file)
 		{
+			if (Prefs.LogVerbose) Log.Message($"[PF-DEBUG] LoadTexture called for {file.FullPath}");
 			if (!file.Exists)
 				return null;
 
@@ -79,7 +81,10 @@ public sealed class TextureLoadingPatches : ClassWithFishPrepatches
 				texture2D = DDSLoader.LoadDDS(fileInfo!.OpenRead(), out hasStoredMipMaps);
 				
 				if (!DDSLoader.error.NullOrEmpty())
+				{
 					LogDDSLoadingError(file);
+					if (Prefs.LogVerbose) Log.Message($"[PF-DEBUG] DDS Loader Error for {file.FullPath}: {DDSLoader.error}");
+				}
 
 				if (texture2D is null)
 				{
@@ -107,6 +112,16 @@ public sealed class TextureLoadingPatches : ClassWithFishPrepatches
 				texture2D.mipMapBias = -0.7f;
 			
 			texture2D.Apply(!hasStoredMipMaps, true);
+			
+			if (texture2D == null)
+			{
+				if (Prefs.LogVerbose) Log.Error($"[PF-DEBUG] Final texture is NULL for {file.FullPath}");
+			}
+			else
+			{
+				if (Prefs.LogVerbose) Log.Message($"[PF-DEBUG] Successfully loaded texture {file.FullPath} ({texture2D.width}x{texture2D.height})");
+			}
+
 			return texture2D;
 		}
 

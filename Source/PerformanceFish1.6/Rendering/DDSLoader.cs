@@ -29,6 +29,7 @@ public static class DDSLoader
 	// mipmapBias limits the number of mipmap when > 0
 	public static Texture2D? LoadDDS(FileStream fileStream, out bool hasMipMaps)
 	{
+		error = null;
 		hasMipMaps = false;
 		using var reader = new BinaryReader(fileStream);
 
